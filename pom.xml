@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<repackage.classifier/>
+		<!--groovy.version>3.0.6</groovy.version-->
 		<spring-boot-admin.version>2.6.2</spring-boot-admin.version>
 		<spring-native.version>0.11.2</spring-native.version>
 	</properties>
@@ -33,9 +34,13 @@
 	</dependencyManagement>
 
 	<dependencies>
-		<dependency>
+		<!--dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-r2dbc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -75,6 +80,11 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.r2dbc</groupId>
+			<artifactId>r2dbc-h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 
