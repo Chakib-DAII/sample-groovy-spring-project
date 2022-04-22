@@ -33,6 +33,10 @@ dependencies {
 	runtimeOnly 'io.r2dbc:r2dbc-h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
+	implementation 'javax.json:javax.json-api'
+	implementation 'org.apache.johnzon:johnzon-core'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr353'
+
 }
 
 dependencyManagement {
