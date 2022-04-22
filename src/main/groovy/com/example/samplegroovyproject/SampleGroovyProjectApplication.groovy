@@ -1,5 +1,7 @@
 package com.example.samplegroovyproject
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.datatype.jsr353.JSR353Module
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.actuate.endpoint.SanitizableData
 import org.springframework.boot.actuate.endpoint.SanitizingFunction
@@ -19,6 +21,14 @@ class SampleGroovyProjectApplication {
 						data.withValue("not gonna get it") : data;
 			}
 		}
+	}
+
+	@Bean
+	ObjectMapper objectMapper() {
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.registerModule(new JSR353Module());
+
+		return objectMapper;
 	}
 	static void main(String[] args) {
 		SpringApplication.run SampleGroovyProjectApplication, args
