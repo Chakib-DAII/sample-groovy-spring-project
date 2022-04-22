@@ -1,6 +1,6 @@
-insert into customer(name) values ('Chakib');
-insert into customer(name) values ('Mohamed');
-insert into customer(name) values ('Chokri');
-insert into customer(name) values ('Anis');
-insert into customer(name) values ('Zakia');
-insert into customer(name) values ('Nouredine');
+insert into customer(firstName,lastName,email) values ('Chakib', 'Daii', 'abc@yz.y');
+insert into customer(firstName,lastName,email) values ('Mohamed', 'Daii', 'abc@yz.y');
+insert into customer(firstName,lastName,email) values ('Chokri', 'Daii', 'abc@yz.y');
+insert into customer(firstName,lastName,email) values ('Anis', 'Daii', 'abc@yz.y');
+insert into customer(firstName,lastName,email) values ('Zakia', 'Daii', 'abc@yz.y');
+insert into customer(firstName,lastName,email) values ('Nouredine', 'Daii', 'abc@yz.y');
