@@ -19,9 +19,9 @@ import org.springframework.stereotype.Component;
  **/
 
 @Component
-public class JsonPatchHttpMessageConverter extends AbstractHttpMessageConverter<JsonPatch> {
+class JsonPatchHttpMessageConverter extends AbstractHttpMessageConverter<JsonPatch> {
 
-  public JsonPatchHttpMessageConverter() {
+  JsonPatchHttpMessageConverter() {
     super(MediaType.valueOf("application/json-patch+json"));
   }
 
@@ -29,9 +29,9 @@ public class JsonPatchHttpMessageConverter extends AbstractHttpMessageConverter<
   protected JsonPatch readInternal(Class<? extends JsonPatch> clazz, HttpInputMessage inputMessage) throws HttpMessageNotReadableException {
 
     try (JsonReader reader = Json.createReader(inputMessage.getBody())) {
-      return Json.createPatch(reader.readArray());
+      return Json.createPatch(reader.readArray())
     } catch (Exception e) {
-      throw new HttpMessageNotReadableException(e.getMessage(), inputMessage);
+      throw new HttpMessageNotReadableException(e.getMessage(), inputMessage)
     }
   }
 
