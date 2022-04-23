@@ -1,4 +1,4 @@
-package com.example.samplegroovyproject.service;
+package com.example.samplegroovyproject.config;
 
 import javax.json.Json;
 import javax.json.JsonPatch;
