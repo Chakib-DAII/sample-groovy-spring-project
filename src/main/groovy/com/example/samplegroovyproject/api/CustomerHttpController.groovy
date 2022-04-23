@@ -3,6 +3,7 @@ package com.example.samplegroovyproject.api
 import com.example.samplegroovyproject.pojo.Customer
 import com.example.samplegroovyproject.repository.CustomerRepository
 import com.example.samplegroovyproject.service.CustomerService
+import com.example.samplegroovyproject.service.ICustomerService
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -26,10 +27,10 @@ import javax.json.JsonPatch
  * */
 @RestController
 class CustomerHttpController {
-    private final CustomerService customerService
+    private final ICustomerService customerService
     private static final PATH = "/customers"
 
-    CustomerHttpController(CustomerService customerService) {
+    CustomerHttpController(ICustomerService customerService) {
         this.customerService = customerService
     }
 
