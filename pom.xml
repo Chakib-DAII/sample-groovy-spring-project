@@ -19,6 +19,8 @@
 		<!--groovy.version>3.0.6</groovy.version-->
 		<spring-boot-admin.version>2.6.2</spring-boot-admin.version>
 		<spring-native.version>0.11.2</spring-native.version>
+		<openApi.version>1.6.7</openApi.version>
+		<server.port>9090</server.port>
 	</properties>
 
 	<dependencyManagement>
@@ -98,6 +100,9 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+
+		<!--jsonPatch dependencies-->
 		<dependency>
 			<groupId>javax.json</groupId>
 			<artifactId>javax.json-api</artifactId>
@@ -110,6 +115,15 @@
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr353</artifactId>
 		</dependency>
+		<!--jsonPatch dependencies-->
+
+		<!--swagger dependencies-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>${openApi.version}</version>
+		</dependency>
+		<!--swagger dependencies-->
 	</dependencies>
 
 	<build>
@@ -126,7 +140,41 @@
 						</env>
 					</image>
 				</configuration>
+				<executions>
+					<execution>
+						<id>pre-integration-test</id>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-integration-test</id>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
+
+			<plugin>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi-maven-plugin</artifactId>
+				<version>0.2</version>
+				<configuration>
+					<apiDocsUrl>http://localhost:${server.port}/v3/api-docs</apiDocsUrl>
+					<outputFileName>openapi.json</outputFileName>
+					<outputDir>${project.build.directory}</outputDir>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.codehaus.gmavenplus</groupId>
 				<artifactId>gmavenplus-plugin</artifactId>

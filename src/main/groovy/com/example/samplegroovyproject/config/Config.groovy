@@ -32,7 +32,6 @@ class Config {
     ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JSR353Module());
-
         return objectMapper
     }
 }
