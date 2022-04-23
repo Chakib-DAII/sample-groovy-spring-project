@@ -18,7 +18,7 @@ import javax.json.JsonValue
  * */
 
 @Service
-class CustomerService {
+class CustomerService implements ICustomerService{
 
     private final CustomerRepository customerRepository
     private final ObjectMapper objectMapper
@@ -28,19 +28,22 @@ class CustomerService {
         this.objectMapper = objectMapper
     }
 
-
+    @Override
     Flux<Customer> getAllCustomers(){
         return this.customerRepository.findAll()
     }
 
+    @Override
     Mono<Customer> getCustomerById(int customerId){
         return this.customerRepository.findById(customerId)
     }
 
+    @Override
     Mono<Customer> createCustomer(final Customer customer){
         return this.customerRepository.save(customer)
     }
 
+    @Override
     Mono<Customer> updateCustomer(int customerId, final Mono<Customer> customerMono){
         return this.customerRepository.findById(customerId)
                 .flatMap(customerDb -> customerMono.map(customer -> {
@@ -49,6 +52,8 @@ class CustomerService {
                 }))
                 .flatMap(customer -> this.customerRepository.save(customer))
     }
+
+    @Override
     Mono<Customer> patchCustomer(int customerId, final Mono<JsonPatch> customerPatchMono){
         return this.customerRepository.findById(customerId)
                 .flatMap(customerDb -> customerPatchMono.map(customer -> {
@@ -62,6 +67,7 @@ class CustomerService {
                 .flatMap(customer -> this.customerRepository.save(customer))
     }
 
+    @Override
     Mono<Void> deleteCustomer(final int id){
         return this.customerRepository.deleteById(id)
     }
